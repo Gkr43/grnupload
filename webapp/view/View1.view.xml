@@ -1,0 +1,61 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:ui="sap.ui.table" xmlns:l="sap.ui.layout.form" controllerName="grnupload.controller.View1" displayBlock="true">
+<Page id="page" title="{i18n>title}">
+<content>
+<ui:Table id="GRNDWTabl_id" rows="{GrnModel>/results}" selectionMode="MultiToggle" rowSelectionChange="onSelect" visibleRowCountMode="Auto" paste="onPaste" threshold="20" enableBusyIndicator="true" ariaLabelledBy="title">
+<ui:extension>
+<OverflowToolbar style="Clear">
+<Button icon="sap-icon://refresh" press="onRefresh" type="Emphasized"/>
+<Title id="GRNDWttl_id"/>
+<ToolbarSpacer/>
+<u:FileUploader id="UploadSet" placeholder="Choose a excell file" style="Emphasized" buttonText="Upload" change="onUpload" sameFilenameAllowed="false" uploadEnabled="true" fileType="XLSX,xlsx" maxFileNameLength="30" maxFileSize="200" uploadComplete="OnUploadCompleted" mediaTypes="text/plain,application/msword,image/png" uploadUrl="../../../../upload" items="{path: '/items', templateShareable: false}" selectionChanged="onSelectionChange" width="15rem"> </u:FileUploader>
+<Button text="Post Data" press="onPostExcelData" type="Emphasized"/>
+</OverflowToolbar>
+</ui:extension>
+<ui:columns>
+<ui:Column width="13rem" filterProperty="EdiModel>BillingDocument" filterType="">
+<Label text="Document Number"/>
+<ui:template>
+<Text text="{GrnModel>Vbeln}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column width="13rem">
+<Label text="GRN No."/>
+<ui:template>
+<Text text="{GrnModel>Grnno}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column width="13rem">
+<Label text="GRN Date"/>
+<ui:template>
+<Text text="{path:'GrnModel>Grndt',formatter:'.formatDate'}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column width="13rem">
+<Label text="GRN Year"/>
+<ui:template>
+<Text text="{GrnModel>Mjahr}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column width="10rem">
+<Label text="GRN Qty"/>
+<ui:template>
+<Text text="{GrnModel>Grqty}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column width="10rem">
+<Label text="Accepted Qty"/>
+<ui:template>
+<Text text="{GrnModel>Acqty}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column width="10rem">
+<Label text="Rejected Qty"/>
+<ui:template>
+<Text text="{GrnModel>Rjqty}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+</ui:columns>
+</ui:Table>
+</content>
+</Page>
+</mvc:View>
